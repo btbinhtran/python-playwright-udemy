@@ -1,0 +1,33 @@
+# Build artifacts
+build/
+
+# VS Code specific files
+.vscode/
+
+# Python files
+*.pyc
+
+# pytest cache and reports
+__pycache__/
+.pytest_cache/
+*.log
+*.txt  # Adjust if you want to keep specific pytest reports
+
+# pytest-bdd artifacts
+features/**/*.feature.pickle
+reports/  # Adjust if you have a different reports directory
+
+# Playwright artifacts
+screenshots/
+trace.zip  # Playwright trace file
+*.webm
+
+# IDE virtual environment
+.venv/
+
+# System files
+*.swp
+*.swo
+
+# Local development configuration
+.env

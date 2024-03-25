@@ -25,6 +25,7 @@ trace.zip  # Playwright trace file
 
 # IDE virtual environment
 .venv/
+venv/
 
 # System files
 *.swp

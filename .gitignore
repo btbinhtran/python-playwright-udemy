@@ -21,6 +21,7 @@ reports/  # Adjust if you have a different reports directory
 screenshots/
 trace.zip  # Playwright trace file
 *.webm
+*.jpg
 
 # IDE virtual environment
 .venv/

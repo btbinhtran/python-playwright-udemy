@@ -9,6 +9,7 @@ class PlaywrightPage:
     self.docs_link = self.page.get_by_role(
       "link", name="Docs"
     )
+    self.search_btn = self.page.get_by_role("button", name="Search")
 
     self.search_input = self.page.get_by_placeholder("Search docs")
 
@@ -18,6 +19,7 @@ class PlaywrightPage:
 
 
   def search(self, query):
+    self.search_btn.wait_for()
     self.page.keyboard.press("Control+KeyK")
     self.search_input.fill(query)
 

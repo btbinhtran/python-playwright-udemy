@@ -15,3 +15,5 @@ def test_users_api(playwright: Playwright):
 
   assert user_data["firstName"] == "Terry"
   assert user_data["lastName"] == "Medhurst"
+
+  api_context.dispose()

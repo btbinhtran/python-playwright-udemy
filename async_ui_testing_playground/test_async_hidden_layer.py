@@ -1,10 +1,8 @@
-import asyncio
-import playwright
-import pytest, pytest_asyncio
-from playwright.async_api import TimeoutError, expect
+import pytest
+from playwright.async_api import Page, TimeoutError
 
 @pytest.mark.asyncio
-async def test_async_hidden(page):
+async def test_async_hidden(page: Page):
   await page.goto("http://uitestingplayground.com/hiddenlayers")
 
   green_btn = page.locator("button#greenButton")

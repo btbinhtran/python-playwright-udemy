@@ -2,7 +2,7 @@ import pytest
 from playwright.async_api import expect
 
 @pytest.mark.asyncio
-async def test_dynamic_id(page):
+async def test_async_dynamic_id(page):
   await page.goto("http://uitestingplayground.com/dynamicid")
 
   button = page.get_by_role(

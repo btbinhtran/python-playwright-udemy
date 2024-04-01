@@ -1,30 +1,32 @@
 import pytest
+import pytest_asyncio
 from playwright.async_api import async_playwright, expect
 
-
-@pytest.fixture(autouse=True)
+@pytest_asyncio.fixture(autouse=True)
 async def browser():
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)  # Change browser if needed
+        browser = await p.chromium.launch(headless=False)
         yield browser
         await browser.close()
 
+@pytest_asyncio.fixture(autouse=True)
+async def context(browser):
+    context = await browser.new_context()
+    yield context
+    await context.close()
 
-@pytest.fixture(autouse=True)
-async def page(browser):
-    async for b in browser:
-      page = await b.new_page()
-      yield page
-      await page.close()
-
+@pytest_asyncio.fixture(autouse=True)
+async def page(context):
+    page = await context.new_page()
+    yield page
+    await page.close()
 
 @pytest.mark.asyncio
 async def test_async_class_attribute(page):
-    async for p in page:
-      await p.goto("http://uitestingplayground.com/classattr")
-      
-      primary_btn = p.locator("button.btn-primary")
+    await page.goto("http://uitestingplayground.com/classattr")
+    
+    primary_btn = page.locator("button.btn-primary")
 
-      await expect(primary_btn).to_be_visible()
+    await expect(primary_btn).to_be_visible()
 
-      await primary_btn.click()
+    await primary_btn.click()

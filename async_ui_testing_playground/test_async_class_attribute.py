@@ -1,5 +1,4 @@
-import pytest
-import pytest_asyncio
+import pytest, pytest_asyncio
 from playwright.async_api import async_playwright, expect
 
 @pytest_asyncio.fixture(autouse=True)

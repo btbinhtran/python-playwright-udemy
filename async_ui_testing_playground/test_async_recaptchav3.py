@@ -17,4 +17,11 @@ async def test_async_solver_with_normal_browser(page: Page):
     await solver.solve_recaptcha()
 
 
-  
+@pytest.mark.asyncio
+async def test_async_recaptcha_not_found_error(page: Page):
+  """Test the solver with a page that does not have a reCAPTCHA."""
+  await page.goto("https://www.google.com/")
+
+  with pytest.raises(RecaptchaTimeoutError):
+    async with recaptchav3.AsyncSolver(page, timeout=10) as solver:
+      await solver.solve_recaptcha()

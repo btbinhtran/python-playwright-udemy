@@ -6,7 +6,6 @@ async def test_add_remove_elements(page: Page):
   """
   Write a test script to add two elements and then remove one. Verify the remaining element count.
   Modify the script to handle errors when trying to remove a non-existent element.
-  await page.goto("https://the-internet.herokuapp.com/add_remove_elements/")
   """
   await page.goto("https://the-internet.herokuapp.com/add_remove_elements/")
 

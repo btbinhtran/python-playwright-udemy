@@ -11,7 +11,9 @@ async def browser():
 
 @pytest_asyncio.fixture(autouse=True)
 async def context(browser):
-    context = await browser.new_context()
+    context = await browser.new_context(
+        permissions=["clipboard-read", "clipboard-write"]
+    )
     yield context
     await context.close()
 

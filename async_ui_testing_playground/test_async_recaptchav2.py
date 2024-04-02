@@ -41,3 +41,12 @@ async def test_async_solver_with_image_challenge(page: Page):
 
   async with recaptchav2.AsyncSolver(page) as solver:
     await solver.solve_recaptcha(wait=True, image_challenge=True)
+
+
+@pytest.mark.asyncio
+async def test_async_recaptcha_not_found_error(page: Page):
+  await page.goto("https://www.google.com/")
+
+  with pytest.raises(RecaptchaNotFoundError):
+    async with recaptchav2.AsyncSolver(page) as solver:
+      await solver.solve_recaptcha()

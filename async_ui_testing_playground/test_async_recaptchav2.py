@@ -37,6 +37,7 @@ async def test_async_solver_with_hidden_recaptcha(page: Page):
 @pytest.mark.asyncio
 @pytest.mark.xfail(raises=CapSolverError)
 async def test_async_solver_with_image_challenge(page: Page):
+  """Test the solver with an image challenge"""
   await page.goto("https://www.google.com/recaptcha/api2/demo")
 
   async with recaptchav2.AsyncSolver(page) as solver:
@@ -45,6 +46,7 @@ async def test_async_solver_with_image_challenge(page: Page):
 
 @pytest.mark.asyncio
 async def test_async_recaptcha_not_found_error(page: Page):
+  """Test the solver with a page that does not have a reCAPTCHA."""
   await page.goto("https://www.google.com/")
 
   with pytest.raises(RecaptchaNotFoundError):

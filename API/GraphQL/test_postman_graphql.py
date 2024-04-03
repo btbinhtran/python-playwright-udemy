@@ -33,8 +33,6 @@ async def test_graphql_echo(api_context: APIRequestContext):
 
   data = await response.json()
   assert "data" in data
-  print("DATADATADATA")
-  print(data)
   assert data["data"]["hello"] == "Hello Binh"
 
 

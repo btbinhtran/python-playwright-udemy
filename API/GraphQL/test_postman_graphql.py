@@ -13,7 +13,7 @@ async def test_graphql_echo():
     # Simple query to test fetching a hello message
     query = """
     query Hello {
-        hello(person: { name: "Binh" })
+      hello(person: { name: "Binh" })
     }
     """
 

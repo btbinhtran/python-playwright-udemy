@@ -6,6 +6,7 @@ async def test_graphql_echo():
   async with async_playwright() as p:
     # No browser launch needed for this test
     api_context = await p.request.new_context(
+      base_url="https://graphql.postman-echo.com/graphql",
       extra_http_headers={'Content-Type': 'application/json'}
     )
 
@@ -16,9 +17,9 @@ async def test_graphql_echo():
     }
     """
 
-    # Send the GraphQL request using api_request
+    # Send the GraphQL request using api_context
     response = await api_context.post(
-      "https://graphql.postman-echo.com/graphql",
+      "", # I put the graphql endpoint in the base_url but you still need to pass a blank url string
       data=json.dumps({"query": query})
     )
 

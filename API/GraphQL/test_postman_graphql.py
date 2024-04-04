@@ -129,3 +129,44 @@ async def test_graphql_request(api_context: APIRequestContext):
   # Assert all header values
   for header, expected_value in expected_headers.items():
     assert data["data"]["request"]["headers"][header] == expected_value, f"Unexpected value for header '{header}'"
+
+@pytest.mark.asyncio
+async def test_graphql_createPerson(api_context: APIRequestContext):
+  """
+  Expected Response:
+  {
+      "data": {
+          "createPerson": {
+              "id": "74", # This can be different
+              "name": "Joe Dirt",
+              "age": 30
+          }
+      }
+  }
+  """
+  # Simple query to test fetching a hello message
+  # Define the GraphQL mutation
+  mutation = """
+  mutation CreatePerson {
+      createPerson(person: { name: "John Doe", age: 30}) {
+        id
+        name
+        age
+      }
+  }
+  """
+
+  response = await api_context.post("", data=json.dumps({"query": mutation}))
+
+  await expect(response).to_be_ok()
+
+  # Parse the JSON response
+  response_data = await response.json()
+  print(response_data)
+
+  # Assert presence of "data" key
+  assert "data" in response_data, "Missing 'data' key in response"
+  assert "createPerson" in response_data["data"]
+  assert "id" in response_data["data"]["createPerson"]
+  assert response_data["data"]["createPerson"]["name"] == "John Doe"
+  assert response_data["data"]["createPerson"]["age"] == 30

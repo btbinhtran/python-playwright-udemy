@@ -131,7 +131,7 @@ async def test_graphql_request(api_context: APIRequestContext):
     assert data["data"]["request"]["headers"][header] == expected_value, f"Unexpected value for header '{header}'"
 
 @pytest.mark.asyncio
-async def test_graphql_createPerson(api_context: APIRequestContext):
+async def test_graphql_createPerson_mutation(api_context: APIRequestContext):
   """
   Expected Response:
   {
@@ -170,3 +170,67 @@ async def test_graphql_createPerson(api_context: APIRequestContext):
   assert "id" in response_data["data"]["createPerson"]
   assert response_data["data"]["createPerson"]["name"] == "John Doe"
   assert response_data["data"]["createPerson"]["age"] == 30
+
+
+@pytest.mark.asyncio
+async def test_graphql_greetings_subscription(api_context: APIRequestContext):
+  # Define the GraphQL subscription query
+  subscription_query = """
+  subscription Greetings {
+    greetings
+  }
+  """
+
+  response = await api_context.post("", data=json.dumps({"query": subscription_query}))
+  messages = (await response.text()).strip().split('\n\n')
+
+  # Parse each message as JSON and store in a list
+  parsed_messages = []
+  for message in messages:
+    # Remove the "data: " prefix (if present)
+    if message.startswith('data: '):
+      message = message[6:]
+    parsed_messages.append(json.loads(message))
+
+  # Expecting parsed_messages to look like:
+  # [
+  #   {
+  #     "data": {
+  #       "greetings": "Hi"
+  #     }
+  #   },
+  #   {
+  #     "data": {
+  #       "greetings": "Bonjour"
+  #     }
+  #   },
+  #   {
+  #     "data": {
+  #       "greetings": "Hola"
+  #     }
+  #   },
+  #   {
+  #     "data": {
+  #       "greetings": "Ciao"
+  #     }
+  #   },
+  #   {
+  #     "data": {
+  #       "greetings": "Zdravo"
+  #     }
+  #   }
+  # ]
+  
+
+  expected_greetings = [
+    "Hi",
+    "Bonjour",
+    "Hola",
+    "Ciao",
+    "Zdravo"
+  ]
+  assert len(parsed_messages) == 5
+  for data, greeting in zip(parsed_messages, expected_greetings):
+    assert "data" in data
+    assert "greetings" in data["data"]
+    assert data["data"]["greetings"] == greeting

@@ -5,7 +5,7 @@
 4. **XPATH as a Last Resort:** `page.locator('//button[@text()='Click me']')`
 
 # Open URL to Debug and Record Your Scripts
-* `playwright codegen test_url`
+* ```playwright codegen test_url```
 
 # pytest CLI Arguments
 * `pytest --headed` - Browser is visible

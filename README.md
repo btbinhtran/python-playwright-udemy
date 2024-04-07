@@ -4,6 +4,9 @@
 3. **CSS Selector:** `page.locator("button.myId")`
 4. **XPATH as a Last Resort:** `page.locator('//button[@text()='Click me']')`
 
+# Install necessary Pip packages
+* `pip install -r requirements.txt`
+
 # Open URL to Debug and Record Your Scripts
 * `playwright codegen test_url`
 

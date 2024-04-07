@@ -5,7 +5,7 @@
 4. **XPATH as a Last Resort:** `page.locator('//button[@text()='Click me']')`
 
 # Open URL to Debug and Record Your Scripts
-```Shell
+* ```Shell
 playwright codegen test_url
 ```
 

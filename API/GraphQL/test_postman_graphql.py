@@ -16,6 +16,29 @@ async def api_context():
     await api_context.dispose()
 
 
+
+@pytest.mark.asyncio
+async def test_hello_query(api_context: APIRequestContext):
+  query = """
+  query HelloQuery($name: String!) {
+    hello(person: { name: $name })
+  }
+  """
+
+  variables = {"name": "Binh"}
+
+  response = await api_context.post(
+    "",
+    data=json.dumps({"query": query, "variables": variables})
+  )
+
+  await expect(response).to_be_ok()
+
+  data = await response.json()
+  assert "data" in data
+  assert data["data"]["hello"] == "Hello Binh"
+
+
 @pytest.mark.asyncio
 async def test_graphql_echo(api_context: APIRequestContext):
   # Simple query to test fetching a hello message

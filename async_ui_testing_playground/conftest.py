@@ -20,6 +20,6 @@ async def context(browser):
 @pytest_asyncio.fixture(autouse=True)
 async def page(context):
     page = await context.new_page()
-    page.set_default_timeout(120000) # Set timeout to 120 seconds
+    page.set_default_timeout(65000) # Set timeout to 65 seconds
     yield page
     await page.close()

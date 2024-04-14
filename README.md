@@ -160,7 +160,7 @@ Feature: Product Searching
     When the search phrase "<phrase>" is entered
     Then results for "<phrase>" are shown
 
-    Example: Shoes
+    Examples: Shoes
       | phrase        | # The only example you need. Remove the ones below.
       | red pumps     |
       | sneakers      |

@@ -111,7 +111,7 @@ Scenario: Add shoes to the shopping cart
 | **Automation** | Each test failure points to a unique problem |
 | **Efficiency** | Less complex work => faster cycle times |
 | **Traceability** | One behavior -> one exammple -> one scenario -> one test -> one result |
-| **Acountability** | Teams cannot hide or avoid behaviors |
+| **Accountability** | Teams cannot hide or avoid behaviors |
 
 ### 2 Behaviors in 1 Scenario
 

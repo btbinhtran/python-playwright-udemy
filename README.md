@@ -74,9 +74,10 @@ Is that understood and are you ready for the requirements?
 ```
 
 ## Gherkin's Golden Rule
-Treat other readers as you would want to be treated:
-
-Write feature files so that everyone can intuitively understand them.
+> [!IMPORTANT]
+> Treat other readers as you would want to be treated:
+>
+> Write feature files so that everyone can intuitively understand them.
 
 ### Gherkin Scenario recommendations
 * Be declarative

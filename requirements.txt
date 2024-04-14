@@ -3,6 +3,7 @@ playwright
 playwright-recaptcha
 pytest
 pytest-asyncio
+pytest-flakefinder
 pytest-playwright
 pytest-timeout
 pytest-xdist

@@ -11,6 +11,7 @@
 * `playwright codegen test_url`
 
 # pytest CLI Arguments
+* `pytest --flake-finder --flake-runs=20` - Find flaky tests by running multiple times
 * `pytest --headed` - Browser is visible
 * `pytest --slowmo=400` - Slow interactions to 400 milliseconds
 * `pytest --browser=firefox|webkit` - Select browser to run on

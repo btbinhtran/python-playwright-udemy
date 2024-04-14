@@ -49,3 +49,124 @@
 * [Udemy: Playwright Python and Pytest for Web Automation Testing](https://www.udemy.com/course/playwright-python-pytest)
 * [pytest-asyncio docs](https://pytest-asyncio.readthedocs.io/en/latest/)
 * [Real Python: Concurrency With the asyncio Module](https://realpython.com/courses/python-3-concurrency-asyncio-module/)
+
+# BDD
+
+## Prompt to Prime AI to help generate Gherkin Scenarios
+```Text
+Act as a quality analyst who is highly experienced in behavioral driven development and developing well-constructed Gherkin Scenarios from supplied requirements. 
+When I supply a requirement, I want you to create full coverage in the following way:
+
+1. Use Gherkin BDD language and output as one entire code snippet for easy copying.
+2. Provide positive and negative scenarios. 
+3. Ensure all common steps you create are added as a Gherkin ‘Background’.
+4. Ensure ‘Background’ is provided only once and is placed after the user story and before the scenarios. 
+5. Ensure all variables used are created as a Gherkin ‘Scenario Outline’.
+6. Ensure variables are added to a Gherkin ‘Examples’ table appropriately.
+7. Include feature level tags and scenario level tags e.g., @valid, @invalid, @feature-example, @smoke-test, @regression-test.
+8. Provide feature and user story.
+9. Afterwards, suggest an appropriate name for the *.feature file and explain your working.
+10. Do not assume any output like error messages or variables not part of the requirements. 
+
+Before you answer, I want you to do the following: if you have any questions about my task or uncertainty about delivering the best expert scenarios possible, always ask bullet point questions for clarification before generating your answer. 
+
+Is that understood and are you ready for the requirements?
+```
+
+## Gherkin's Golden Rule
+Treat other readers as you would want to be treated:
+
+Write feature files so that everyone can intuitively understand them.
+
+### Gherkin Scenario recommendations
+* Be declarative
+* Follow strict step type order
+  - Given -> When -> Then
+* Write concise scenarios
+  - Single-digit length
+* Write steps chronologically
+  - So they can be automated
+* Avoid low-level interactions
+* Respect step types
+
+### Good example
+```Gherkin
+Scenario: Add shoes to the shopping cart
+  Given the ShoeStore home page is displayed
+  When the shopper searches for "red pumps"
+  And the shopper adds the first result to the cart
+  Then the cart has one pair of "red pumps"
+```
+
+## The Cardinal Rule of BDD
+One scenario should cover exactly one individual, independent behavior.
+
+When focusing on one behavior at a time:
+
+|  |  |
+| --- | --- |
+| **Collaboration** | More focus + less confusion |
+| **Automation** | Each test failure points to a unique problem |
+| **Efficiency** | Less complex work => faster cycle times |
+| **Traceability** | One behavior -> one exammple -> one scenario -> one test -> one result |
+| **Acountability** | Teams cannot hide or avoid behaviors |
+
+### 2 Behaviors in 1 Scenario
+
+**BAD**
+```Gherkin
+Feature: Product Searching
+  As a shopper,
+  I want to search for new items,
+  so that I can buy what I want.
+
+  Scenario: Simple product search
+    Given the ShoeStore home page is displayed
+    When the search phrase "red pumps" is entered # 1st Scenario
+    Then results for "red pumps" are shown        #
+    When the user searches for images from the results page # 2nd Scenario
+    Then image results for "red pumps" are shown            #
+```
+
+**GOOD:** Split into 2 Scenarios
+```Gherkin
+Feature: Product Searching
+
+  Scenario: Simple Web search
+    Given the ShoeStore home page is displayed
+    When the search phrase "red pumps" is entered
+    Then results for "red pumps" are shown
+
+  Scenario: Simple Web image search
+    Given ShoeStore search results for "red pumps" are displayed
+    When the user searches for images from the results page
+    Then image results for "red pumps" are shown
+```
+
+## The Unique Example Rule
+Don't include unnecessary examples.
+Focus on unique input *equivalence* classes.
+
+**BAD:** Example Overload
+```Gherkin
+Feature: Product Searching
+
+  Scenario Outline: Simple product search
+    Given the ShoeStore home page is displayed
+    When the search phrase "<phrase>" is entered
+    Then results for "<phrase>" are shown
+
+    Example: Shoes
+      | phrase        | # The only example you need. Remove the ones below.
+      | red pumps     |
+      | sneakers      |
+      | sandals       |
+      | flip flops    |
+      | flats         |
+      | slippers      |
+      | running shoes |
+```
+
+## The Fourth Amigo Rule
+> [!IMPORTANT]
+> Pretend that your high school English teacher is the "Fourth Amigo" reading your Gherkin.

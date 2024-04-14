@@ -100,9 +100,10 @@ Scenario: Add shoes to the shopping cart
 ```
 
 ## The Cardinal Rule of BDD
-One scenario should cover exactly one individual, independent behavior.
-
-When focusing on one behavior at a time:
+> [!IMPORTANT]
+> One scenario should cover exactly one individual, independent behavior.
+>
+> When focusing on one behavior at a time:
 
 |  |  |
 | --- | --- |
@@ -145,8 +146,9 @@ Feature: Product Searching
 ```
 
 ## The Unique Example Rule
-Don't include unnecessary examples.
-Focus on unique input *equivalence* classes.
+> [!IMPORTANT]
+> Don't include unnecessary examples.
+> Focus on unique input *equivalence* classes.
 
 **BAD:** Example Overload
 ```Gherkin

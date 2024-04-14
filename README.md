@@ -173,3 +173,40 @@ Feature: Product Searching
 ## The Fourth Amigo Rule
 > [!IMPORTANT]
 > Pretend that your high school English teacher is the "Fourth Amigo" reading your Gherkin.
+
+### Why Proper English Matters
+Behavior scenarios are meant to be *readable* and *expressive*. Steps are also meant to be *reusable*.
+
+Poor grammar, misspellings, and inconsistent phrasing can ruin the benefits of behavior specification.
+Scenarios can become confusing. Improper steps could be used.
+
+### Point of View
+> [!IMPORTANT]
+> Use Third-Person
+
+```Gherkin
+Given the ShoeStore home page is displayed
+When the user searches for "red pumps"
+Then links related to "red pumps" are shown on the results page
+```
+
+### Subject-Predicate Phrases
+> [!IMPORTANT]
+> All steps should use **subject-predicate phrases**.
+
+Subject-predicate phrases capture the appropriate context for steps.
+
+Scenarios also provide context.
+However, when steps are reused elsewhere, the scenario is not there to provide the context.
+
+Thus, **each step must make sense in its own right.**
+
+**GOOD**
+```Gherkin
+Scenario: Simple product search
+  Given the ShoeStore home page is displayed
+  When the search phrase "sneakers" is entered
+  Then the results page shows links related to "sneakers"
+  And the results page shows image links for "sneakers"
+  And the results page shows video llinks for "sneakers"
+```

@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect
 
 @pytest.mark.asyncio
 async def test_async_mouse_over(page: Page):
-  await page.goto("http://uitestingplayground.com/mouseover")
+  await page.goto("http://uitestingplayground.com/mouseover", wait_until="networkidle")
 
   click_me_link = page.get_by_title("Click me")
   await click_me_link.hover()

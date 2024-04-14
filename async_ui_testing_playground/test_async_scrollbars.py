@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect
 
 @pytest.mark.asyncio
 async def test_async_scrollbars(page: Page):
-    await page.goto("http://uitestingplayground.com/scrollbars")
+    await page.goto("http://uitestingplayground.com/scrollbars", wait_until="networkidle")
     hiding_btn = page.get_by_role("button", name="Hiding Button")
 
     await hiding_btn.click()

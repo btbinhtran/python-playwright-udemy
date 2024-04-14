@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect
 
 @pytest.mark.asyncio
 async def test_async_text_input(page: Page):
-  await page.goto("http://uitestingplayground.com/textinput")
+  await page.goto("http://uitestingplayground.com/textinput", wait_until="networkidle")
 
   new_button_name = "COOL BUTTON DUDE!"
 

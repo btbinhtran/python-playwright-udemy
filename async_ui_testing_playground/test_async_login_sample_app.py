@@ -4,7 +4,7 @@ from playwright.async_api import Page, expect
 
 @pytest_asyncio.fixture(autouse=True)
 async def visit_test_page(page: Page):
-  await page.goto("http://uitestingplayground.com/sampleapp")
+  await page.goto("http://uitestingplayground.com/sampleapp", wait_until="networkidle")
 
 
 @pytest.mark.asyncio

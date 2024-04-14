@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect
 
 @pytest.mark.asyncio
 async def test_async_progressbar(page: Page):
-  await page.goto("http://uitestingplayground.com/progressbar")
+  await page.goto("http://uitestingplayground.com/progressbar", wait_until="networkidle")
   stop_percentage = 75
   value_now = None
 

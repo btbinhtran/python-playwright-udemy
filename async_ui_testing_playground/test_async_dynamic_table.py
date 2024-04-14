@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect
 
 @pytest.mark.asyncio
 async def test_async_dynamic_table(page: Page):
-    await page.goto("http://uitestingplayground.com/dynamictable")
+    await page.goto("http://uitestingplayground.com/dynamictable", wait_until="networkidle")
 
     cpu_load_p = page.locator("p.bg-warning")
     percentage = await cpu_load_p.inner_text()

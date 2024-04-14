@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect
 
 @pytest.mark.asyncio
 async def test_async_dynamic_id(page: Page):
-  await page.goto("http://uitestingplayground.com/dynamicid")
+  await page.goto("http://uitestingplayground.com/dynamicid", wait_until="networkidle")
 
   button = page.get_by_role(
     "button", name="Button with Dynamic ID"

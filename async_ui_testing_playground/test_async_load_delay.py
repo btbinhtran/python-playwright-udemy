@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect
 
 @pytest.mark.asyncio
 async def test_async_load_delay(page: Page):
-  await page.goto("http://uitestingplayground.com")
+  await page.goto("http://uitestingplayground.com", wait_until="networkidle")
 
   load_delay_link = page.get_by_role("link", name="Load Delay")
   await load_delay_link.click()

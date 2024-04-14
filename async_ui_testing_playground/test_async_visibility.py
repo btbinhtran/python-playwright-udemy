@@ -3,7 +3,7 @@ from playwright.async_api import Page, expect, TimeoutError
 
 @pytest.mark.asyncio
 async def test_async_visibility(page: Page):
-  await page.goto("http://uitestingplayground.com/visibility")
+  await page.goto("http://uitestingplayground.com/visibility", wait_until="networkidle")
 
   hide_btn = page.get_by_role("button", name="Hide")
   removed_btn = page.get_by_role("button", name="Removed")

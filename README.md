@@ -12,15 +12,16 @@
 
 # pytest CLI Arguments
 * `pytest --flake-finder --flake-runs=20` - Find flaky tests by running multiple times
-* `pytest --headed` - Browser is visible
+* `pytest --headed` - Browser is visible. Default is `headless`
 * `pytest --slowmo=400` - Slow interactions to 400 milliseconds
-* `pytest --browser=firefox|webkit` - Select browser to run on
+* `pytest --browser=chromium|firefox|webkit` - Select browser to run on. Default is `chromium`
 * `pytest --device="Pixel 5"` - Select device to run on
-* `pytest --tracing on|off|retain-on-failure` - Toggle tracing
 * `pytest -n auto` - Run tests on the max number of threads allowed on your system (# CPUs * # of threads per CPU)
-* `pytest --video on` - Record the test as a video
-* `pytest --screenshot on|only-on-failure` - Take screenshot at the end of the test execution, when test finished
+* `pytest --tracing on|off|retain-on-failure` - Toggle tracing
+* `pytest --video on|off|retain-on-failure` - Record the test as a video. Default is `off`
+* `pytest --screenshot on|off|only-on-failure` - Take screenshot at the end of the test execution, when test finished. Default is `off`
 * `pytest -k test_page_visits_docs` - Run test by it's specific function name
+* `pytest --full-page-screenshot` - Whether to take a full page screenshot on failure. By default, only the viewport is captured. Default is `off`
 
 # Playwright in Python REPL
 ## Setting up the page to test out locators and selectors

@@ -15,6 +15,25 @@ def trace_test(context: BrowserContext):
   yield
   context.tracing.stop(path="trace.zip")
 
+# VALUABLE Code
+@pytest.fixture(autouse=True)
+def trace_test_on_failure(request, browser_context: BrowserContext):
+    # Start tracing before the test
+    browser_context.tracing.start(
+        name="playwright",
+        screenshots=True,
+        snapshots=True,
+        sources=True,
+    )
+    yield
+    # Check if the test failed after the yield
+    if request.node.rep_call.failed:
+        # Stop tracing and save the trace if the test failed
+        browser_context.tracing.stop(path="failure.zip")
+    else:
+        # Optionally, stop tracing without saving if the test passed
+        browser_context.tracing.stop()
+
 
 def test_page_has_get_started_link(page: Page):
   page.goto("https://playwright.dev/python")
